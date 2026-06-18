@@ -1,5 +1,9 @@
 # Skport / Gryphline API 文件
 
+[English](./README_EN.md)
+
+> 部分遊戲術語（精英化=Promotion、潛能/命座=Potential、術師=Caster、理智=Sanity 等）已對照 Arknights: Endfield 官方英文版查證。標註「英譯未查證」的詞條（謎質、黑匣子、維修靈感點、總控中樞、光榮之路等）為合理推測翻譯，並非官方確認用詞，使用前建議自行核對。
+
 ## Domains
 
 | Domain | 用途 |
@@ -201,12 +205,12 @@ detail
 **`achieve` 欄位**
 | 欄位 | 說明 |
 |------|------|
-| `count` | 光榮之路數量 |
+| `count` | 光榮之路數量（英譯未查證，暫譯 Glory Road） |
 
 **`spaceShip.rooms[]` 欄位**
 | 欄位 | 說明 |
 |------|------|
-| `type` | 房間類型（`0` = 總控中樞） |
+| `type` | 房間類型（`0` = 總控中樞，英譯未查證） |
 | `level` | 房間等級 |
 
 **`chars[]` 欄位**
@@ -219,7 +223,9 @@ chars[]
 │   ├── avatarRtUrl        # 圓形頭像
 │   ├── illustrationUrl    # 立繪
 │   ├── rarity.key         # rarity_6 / rarity_5 / rarity_4 / rarity_3
-│   ├── profession.value   # 突擊 / 術師 / ...
+│   ├── profession.value   # 官方六大職業：先鋒/近衛/重裝/術師/狙擊/醫療
+│   │                      # → Vanguard/Guard/Defender/Caster/Sniper/Medic
+│   │                      # （請依實際 API 回傳字串核對）
 │   ├── property.value     # 元素屬性
 │   ├── weaponType.value   # 武器類型
 │   ├── skills[]
@@ -231,7 +237,7 @@ chars[]
 │   └── tags[]
 ├── id
 ├── level
-├── evolvePhase            # 精英化階段（0–4）
+├── evolvePhase            # 精英化階段（0–4），官方英譯為 Promotion
 ├── potentialLevel         # 潛能（0–5）
 ├── userSkills{}           # { skillId: { level, maxLevel } }
 ├── bodyEquip              # 護甲
@@ -256,12 +262,12 @@ domain[]
 ├── level                  # 地區等級
 ├── settlements[]
 │   ├── name               # 據點名稱
-│   └── level              # 據點等級
+│   └── level               # 據點等級
 └── collections[]
-    ├── puzzleCount        # 謎質
-    ├── trchestCount       # 儲藏箱
-    ├── pieceCount         # 維修靈感點
-    └── blackboxCount      # 黑匣子
+    ├── puzzleCount        # 謎質（英譯未查證，暫譯 Enigma Matter）
+    ├── trchestCount       # 儲藏箱（英譯未查證，暫譯 Storage Chest）
+    ├── pieceCount         # 維修靈感點（英譯未查證，暫譯 Repair Inspiration Point）
+    └── blackboxCount      # 黑匣子（英譯未查證，暫譯 Black Box）
 ```
 
 **`quickaccess[]` 欄位**
@@ -414,12 +420,23 @@ Params: token, server_id, pool_id, lang, seq_id（分頁游標）
 
 | 終末地術語 | 欄位 | 說明 | 上限 |
 |-----------|------|------|------|
-| 精英化 | `evolvePhase` | 幹員突破 | E4 |
-| 潛能 | `potentialLevel` | 幹員命座 | 5 |
-| 武器潛能 | `refineLevel` | 武器命座 | 5 |
-| 武器突破 | `breakthroughLevel` | 武器突破階段 | 4 |
+| 精英化（英譯：Promotion） | `evolvePhase` | 幹員突破 | E4 |
+| 潛能（英譯：Potential） | `potentialLevel` | 幹員命座 | 5 |
+| 武器潛能（英譯：Weapon Potential） | `refineLevel` | 武器命座 | 5 |
+| 武器突破（英譯：Weapon Breakthrough） | `breakthroughLevel` | 武器突破階段 | 4 |
 | 技能：普攻 | `skill_type_normal_attack` | — | — |
 | 技能：技能 | `normal_skill` | — | — |
 | 技能：聯合技 | `combo_skill` | — | — |
 | 技能：終結技 | `ultimate_skill` | — | — |
 | 限定幹員 | `labelType: label_type_up` | — | — |
+
+**官方六大職業中英對照**（已查證）：
+
+| 中文 | English |
+|------|---------|
+| 先鋒 | Vanguard |
+| 近衛 | Guard |
+| 重裝 | Defender |
+| 術師 | Caster |
+| 狙擊 | Sniper |
+| 醫療 | Medic |
